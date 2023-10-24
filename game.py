@@ -78,7 +78,8 @@ class GameClass:
         # Check if the snake will eat food
         if self.food.rect.collidepoint(self.snake.squares[0][0], self.snake.squares[0][1]):
             # Increase the snake's length
-            if level_up: level_up.play()
+            try: level_up.play()
+            except NameError: pass
             self.food = Food(self.screen)
             self.should_increase_snake_length = True
         else:
@@ -89,7 +90,8 @@ class GameClass:
         # Check if the snake collides with itself
         for i in self.snake.squares:
             if self.snake.squares.count(i) > 1:
-                if game_over: game_over.play()
+                try: game_over.play()
+                except NameError: pass
                 time.sleep(2)
                 self.reset()
 
